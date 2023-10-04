@@ -4,6 +4,7 @@
     padding: 0;
     margin: 0;
     font-family: 'Press Start 2P';
+    font-size: 1rem;
 }
 
 body {
@@ -19,4 +20,82 @@ body {
 
 .left-content, .right-content {
     flex-basis: 50%;
+}
+
+.left-content {
+    display: grid;
+    /* changed repeat auto-fit to 2 */
+    grid-template-columns: repeat(2, minmax(200px,0.5fr));
+    /* specified left/right gap */
+    grid-gap: 2rem 2rem;
+}
+
+.card {
+    width: 300px;
+    background-color: #9EDEF9;
+    border-radius: 1rem;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    /* changed padding */
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.right-content {
+    width: 50%;
+    text-align: center;
+    color: black;
+    position: fixed;
+    top: 250px;
+    right: 10px;
+}
+
+.right-content img {
+    margin: 2rem;
+
+}
+
+.right-content h1 {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.abilities {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.abilities .group {
+    background-color: #b74555;
+    color: whitesmoke;
+    padding: 0.5rem;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.base-stat {
+    margin-top: 2rem;
+}
+
+.btn-group {
+    display: flex;
+    width: 175%;
+}
+
+.btn-group button {
+    outline: none;
+    width: 150%;
+    padding: 0.3rem 0;
+    margin: 1rem;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #b74555;
+    color: whitesmoke;
+    border-radius: 8px;
 }

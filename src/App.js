@@ -1,8 +1,8 @@
 // rfce for shortcut to make basic react layout
 
 import React from 'react'
-import Main from './Components/Main';
-import './Components/style.css';
+import Main from './components/Main';
+import './components/style.css';
 
 function App() {
   return (
