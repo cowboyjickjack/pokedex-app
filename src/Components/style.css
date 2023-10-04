@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&family=Press+Start+2P&family=Roboto&family=VT323&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Press Start 2P';
+}
+
+body {
+    background-color: #FCEEC8;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding-top: 100px;
+    display: flex;
+}
+
+.left-content, .right-content {
+    flex-basis: 50%;
+}
