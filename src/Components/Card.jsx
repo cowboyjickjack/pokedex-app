@@ -1,4 +1,5 @@
 import React from 'react'
+import { capitalizeFirstLetter } from '../utils/utils';
 
 export const Card = ({pokemon, loading, infoPokemon}) => {
     console.log(pokemon);
@@ -15,7 +16,7 @@ export const Card = ({pokemon, loading, infoPokemon}) => {
                             <div className="card" key={item.id} onClick={() => infoPokemon(item)}> {/* // on click of the card, it shows pokeInfo data */}
                                 <h2>{item.id}</h2>
                                 <img src={item.sprites.front_default} alt="Charmander-sprite" />
-                                <h2>{item.name}</h2>
+                                <h2>{capitalizeFirstLetter(item.name)}</h2>
                             </div>
                         </>
                     )

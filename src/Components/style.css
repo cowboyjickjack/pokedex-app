@@ -27,7 +27,7 @@ body {
     /* changed repeat auto-fit to 2 */
     grid-template-columns: repeat(2, minmax(200px,0.5fr));
     /* specified left/right gap */
-    grid-gap: 2rem 2rem;
+    grid-gap: 2rem 0rem;
 }
 
 .card {
@@ -63,10 +63,10 @@ body {
 }
 
 .abilities {
-    width: 35%;
+    width: 55%;
     margin: auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     margin-top: 1rem;
 }
