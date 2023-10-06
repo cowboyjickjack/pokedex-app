@@ -2,7 +2,7 @@ import React from 'react'
 import { capitalizeFirstLetter } from '../utils/utils';
 
 export const Card = ({pokemon, loading, infoPokemon}) => {
-    console.log(pokemon);
+    // console.log(pokemon);
   return (
     
         <>

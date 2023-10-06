@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #FCEEC8;
+    background-color: #EAC19B;
 }
 
 .container {
@@ -32,7 +32,8 @@ body {
 
 .card {
     width: 320px;
-    background-color: #9EDEF9;
+    background-color: #49151a;
+    color: #fff2de;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
     /* changed padding */
@@ -46,10 +47,16 @@ body {
 .right-content {
     width: 50%;
     text-align: center;
-    color: black;
+    color: #2c0e10;
     position: fixed;
     top: 250px;
     right: 10px;
+}
+
+.search-group {
+    position: fixed;
+    top: 100px;
+    right: 280px;
 }
 
 .right-content img {
@@ -72,7 +79,7 @@ body {
 }
 
 .abilities .group {
-    background-color: #b74555;
+    background-color: #af2d36;
     color: whitesmoke;
     padding: 0.5rem;
     font-size: 12px;
@@ -81,6 +88,10 @@ body {
 
 .base-stat {
     margin-top: 2rem;
+}
+
+.base-stat h3 {
+    margin-bottom: 0.5rem;
 }
 
 .btn-group {
@@ -95,7 +106,7 @@ body {
     margin: 1rem;
     font-size: 14px;
     font-weight: bold;
-    background-color: #b74555;
+    background-color: #af2d36;
     color: whitesmoke;
     border-radius: 8px;
 }

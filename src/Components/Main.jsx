@@ -5,10 +5,13 @@ import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 
+//TODO: Add search bar function!!!
+
 const Main = () => {
 
     // API fetch info
     const [pokeData, setPokeData] = useState([]); // initialize pokeData as empty
+    const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true); //initialize loading as true
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
     const [nextUrl, setNextUrl] = useState();
@@ -44,6 +47,24 @@ const Main = () => {
         })
     }
 
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleSearch = () => {
+        if (searchQuery.trim() !== "") {
+            // Perform the search logic here and set the result in pokedex state
+            // You can use the pokeData state to find the matching Pokemon by name
+            const foundPokemon = pokeData.find(
+              (pokemon) =>
+                pokemon.name.toLowerCase() === searchQuery.trim().toLowerCase()
+            );
+        
+            // Set the found Pokemon in the pokedex state
+            setPokedex(foundPokemon);
+          }
+    };
+
     useEffect(() => {
         pokeFun();
         // if rendered ok, url runs
@@ -69,6 +90,10 @@ const Main = () => {
                     </div>
                 </div>
                 <div className="right-content">
+                    <div className="search-group">
+                        <input type="text" placeholder="Search Pokemon" value={searchQuery} onChange={handleSearchInputChange} onKeyDown={handleSearch}/>
+                        <button onClick={handleSearch} >Search</button>
+                    </div>
                     <Pokeinfo data = {pokedex}/>
                 </div>
             </div>
