@@ -1,14 +1,27 @@
 import React from 'react'
 
-export const Card = () => {
+export const Card = ({pokemon, loading, infoPokemon}) => {
+    console.log(pokemon);
   return (
     
         <>
-            <div className="card">
-                <h2>1</h2>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Charmander-sprite" />
-                <h2>Charmander</h2>
-            </div>
+
+            {
+                // if loading true, show loading. If false, return pokemon data
+                loading ?  <h1>Loading...</h1>:
+                pokemon.map((item) => {
+                    return(
+                        <>
+                            <div className="card" key={item.id} onClick={() => infoPokemon(item)}> {/* // on click of the card, it shows pokeInfo data */}
+                                <h2>{item.id}</h2>
+                                <img src={item.sprites.front_default} alt="Charmander-sprite" />
+                                <h2>{item.name}</h2>
+                            </div>
+                        </>
+                    )
+                })
+            }
+
         </>
         
   )
