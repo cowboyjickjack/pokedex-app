@@ -12,6 +12,7 @@ const Main = () => {
     // API fetch info
     const [pokeData, setPokeData] = useState([]); // initialize pokeData as empty
     const [searchQuery, setSearchQuery] = useState("");
+    const [pokemon, setPokemon] = useState("");
     const [loading, setLoading] = useState(true); //initialize loading as true
     const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
     const [nextUrl, setNextUrl] = useState();
@@ -47,23 +48,51 @@ const Main = () => {
         })
     }
 
+    // search pokemon
+
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
-    const handleSearch = () => {
-        if (searchQuery.trim() !== "") {
-            // Perform the search logic here and set the result in pokedex state
-            // You can use the pokeData state to find the matching Pokemon by name
-            const foundPokemon = pokeData.find(
-              (pokemon) =>
-                pokemon.name.toLowerCase() === searchQuery.trim().toLowerCase()
-            );
+    const handleEnter = (event) => {
+        if (event.key === 'Enter') {
+          console.log("Enter has been hit.");
+          searchPokemon(event);
+        }
+    }
+
+    const searchPokemon = async() => {
+
+        const searchURL = `https://pokeapi.co/api/v2/pokemon/${searchQuery}`;
+        // if (!pokemon || !isNaN(pokemon)) {
+        //     alert ('Please input a pokemon');
+        //     return;
+        // }
+
+        axios.get(searchURL)
+        .then((response) => {
+
+            // picking out what we display on our pokedex
+            setPokedex({
+                name: response.data.name,
+                id: response.data.id,
+                abilities: response.data.abilities,
+                stats: response.data.stats,
+            });
+
+            console.log(response.data);
         
-            // Set the found Pokemon in the pokedex state
-            setPokedex(foundPokemon);
-          }
-    };
+        })
+        .catch((error) => {
+            console.error(error);
+            if (error.response && error.response.status === 404) {
+              console.error(
+                "Pokemon not found or API request failed. Please try again."
+              );
+            }
+        });
+
+    }
 
     useEffect(() => {
         pokeFun();
@@ -91,8 +120,8 @@ const Main = () => {
                 </div>
                 <div className="right-content">
                     <div className="search-group">
-                        <input type="text" placeholder="Search Pokemon" value={searchQuery} onChange={handleSearchInputChange} onKeyDown={handleSearch}/>
-                        <button onClick={handleSearch} >Search</button>
+                        <input type="text" placeholder="Search Pokemon" value={searchQuery} onChange={handleSearchInputChange} onKeyDown={handleEnter}/>
+                        <button onClick={searchPokemon}>Search</button>
                     </div>
                     <Pokeinfo data = {pokedex}/>
                 </div>
