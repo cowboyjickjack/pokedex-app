@@ -61,38 +61,43 @@ const Main = () => {
         }
     }
 
-    const searchPokemon = async() => {
-
+    const searchPokemon = async () => { // also brings up pokemon beside them based on id
         const searchURL = `https://pokeapi.co/api/v2/pokemon/${searchQuery}`;
-        // if (!pokemon || !isNaN(pokemon)) {
-        //     alert ('Please input a pokemon');
-        //     return;
-        // }
-
-        axios.get(searchURL)
-        .then((response) => {
-
-            // picking out what we display on our pokedex
-            setPokedex({
-                name: response.data.name,
-                id: response.data.id,
-                abilities: response.data.abilities,
-                stats: response.data.stats,
+    
+        axios
+            .get(searchURL)
+            .then(async (response) => {
+                const searchedPokemon = response.data;
+                const searchedPokemonId = searchedPokemon.id;
+                
+                const leftSideIds = [];
+    
+                // Ensure you have 20 items, including the searched Pokemon and its neighbors.
+                for (let id = searchedPokemonId - 9; leftSideIds.length < 20; id++) {
+                    leftSideIds.push(id);
+                }
+    
+                const leftSidePokemon = await Promise.all(
+                    leftSideIds.map(async (id) => {
+                        const leftSideURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
+                        const leftSideResponse = await axios.get(leftSideURL);
+                        return leftSideResponse.data;
+                    })
+                );
+    
+                setPokedex(searchedPokemon);
+                setPokeData(leftSidePokemon);
+            })
+            .catch((error) => {
+                console.error(error);
+                if (error.response && error.response.status === 404) {
+                    console.error(
+                        "Pokemon not found or API request failed. Please try again."
+                    );
+                }
             });
-
-            console.log(response.data);
-        
-        })
-        .catch((error) => {
-            console.error(error);
-            if (error.response && error.response.status === 404) {
-              console.error(
-                "Pokemon not found or API request failed. Please try again."
-              );
-            }
-        });
-
-    }
+    };
+    
 
     useEffect(() => {
         pokeFun();
